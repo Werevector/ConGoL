@@ -22,7 +22,7 @@ public:
 
 private:
 
-	std::vector<int> l_Field;
+	std::vector<std::vector<int>> l_Field;
 
 
 };

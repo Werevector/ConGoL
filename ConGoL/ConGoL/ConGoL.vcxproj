@@ -70,7 +70,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Field.cpp" />
-    <ClCompile Include="FieldRenderer.cpp" />
+    <ClCompile Include="Field_Renderer.cpp" />
     <ClCompile Include="Field_Operator.cpp" />
     <ClCompile Include="GameTimer.cpp" />
     <ClCompile Include="SimLoop.cpp" />
@@ -78,7 +78,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Field.h" />
-    <ClInclude Include="FieldRenderer.h" />
+    <ClInclude Include="Field_Renderer.h" />
     <ClInclude Include="Field_Operator.h" />
     <ClInclude Include="GameTimer.h" />
     <ClInclude Include="SimLoop.h" />

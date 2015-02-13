@@ -19,13 +19,19 @@ public:
 	void Set_State_DEAD(int x, int y);
 	void Set_State_LIVE(int x, int y);
 
+	int get_NeighborSum(int x, int y);
 
+	int get_FieldSize_X();
+	int get_FieldSize_Y();
 
 
 private:
 
 	int const DEFAULT_SIZE = 100;
 	std::vector<std::vector<int>> l_Field;
+
+	int f_xSize;
+	int f_ySize;
 
 
 };

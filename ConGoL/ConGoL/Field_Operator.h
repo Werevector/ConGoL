@@ -5,7 +5,8 @@ class Field_Operator{
 
 public:
 
-	static void next_Gen(Field life_Field);
+	static void next_Gen(Field& l_Field);
+
 
 private:
 

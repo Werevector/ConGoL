@@ -39,9 +39,6 @@
     <ClCompile Include="Field.cpp">
       <Filter>Source Files\Objects</Filter>
     </ClCompile>
-    <ClCompile Include="GameTimer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="SimLoop.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -51,13 +48,13 @@
     <ClCompile Include="Field_Renderer.cpp">
       <Filter>Source Files\Graphics</Filter>
     </ClCompile>
+    <ClCompile Include="GameTimer.cpp">
+      <Filter>Source Files\Objects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Field.h">
       <Filter>Header Files\Objects</Filter>
-    </ClInclude>
-    <ClInclude Include="GameTimer.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="SimLoop.h">
       <Filter>Header Files</Filter>
@@ -67,6 +64,9 @@
     </ClInclude>
     <ClInclude Include="Field_Renderer.h">
       <Filter>Header Files\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="GameTimer.h">
+      <Filter>Header Files\Objects</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

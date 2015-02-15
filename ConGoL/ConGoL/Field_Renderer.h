@@ -26,8 +26,8 @@ private:
 
 	bool GRID_STATE;
 
-	int const SCREEN_WIDTH = 1000;
-	int const SCREEN_HEIGHT = 1000;
+	int const SCREEN_WIDTH = 800;
+	int const SCREEN_HEIGHT = 800;
 
 	SDL_Rect l_Rect;
 

@@ -6,7 +6,7 @@
 #include "Field_Renderer.h"
 #include "GameTimer.h"
 #include <dos.h>
-
+#include "L16_FParser.h"
 void close();
 
 
@@ -24,11 +24,13 @@ int main(int argc, char* args[]) {
 
 	//The main sim loop
 	m_Field.Initiate_Field_DEF();
+	L16_Parser::Load_Field(m_Field, "LF106//gun.life");
+
 	m_FRenderer.Init();
 
 	m_Timer.Reset();
 
-	int frame_Cap = 60;
+	int frame_Cap = 10;
 	int total_FrameTime = 1000 / frame_Cap;
 
 	while (!quit)
@@ -62,10 +64,10 @@ int main(int argc, char* args[]) {
 
 		std::cout << "Time: " << m_Timer.TotalTime() << "\n";
 		
-		/*total_FrameTime = 1000 / frame_Cap;
+		total_FrameTime = 1000 / frame_Cap;
 		if (m_Timer.DeltaTime() < total_FrameTime){
 			SDL_Delay(total_FrameTime - m_Timer.DeltaTime());
-		}*/
+		}
 
 		
 		

@@ -2,6 +2,7 @@
 
 Field_Renderer::Field_Renderer(){
 	f_resolution = 1;
+	GRID_STATE = false;
 }
 
 void Field_Renderer::Init(){
@@ -33,9 +34,9 @@ void Field_Renderer::Render_All(Field& r_Field){
 	//Render a single field
 	Render_Field(r_Field);
 
-
-	Render_FieldGrid(r_Field.get_FieldSize_X(), r_Field.get_FieldSize_Y());
-	
+	if (GRID_STATE){
+		Render_FieldGrid(r_Field.get_FieldSize_X(), r_Field.get_FieldSize_Y());
+	}
 
 	//switch renderbuffers
 	SDL_RenderPresent(f_Renderer);
@@ -96,4 +97,8 @@ void Field_Renderer::Render_FieldRect(int xPos, int yPos){
 	SDL_SetRenderDrawColor(f_Renderer, 0xFF, 0xFF, 0xFF, 0xFF);
 	SDL_RenderFillRect(f_Renderer, &l_Rect);
 
+}
+
+void Field_Renderer::switch_Grid_State(){
+	GRID_STATE = !GRID_STATE;
 }

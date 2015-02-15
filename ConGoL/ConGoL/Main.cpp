@@ -48,6 +48,10 @@ int main(int argc, char* args[]) {
 		if (currentKeyStates[SDL_SCANCODE_S] && frame_Cap > 1){
 			frame_Cap -= 1;
 		}
+
+		if (currentKeyStates[SDL_SCANCODE_G]){
+			m_FRenderer.switch_Grid_State();
+		}
 		
 		m_FRenderer.Render_All(m_Field);
 		
@@ -58,10 +62,10 @@ int main(int argc, char* args[]) {
 
 		std::cout << "Time: " << m_Timer.TotalTime() << "\n";
 		
-		total_FrameTime = 1000 / frame_Cap;
+		/*total_FrameTime = 1000 / frame_Cap;
 		if (m_Timer.DeltaTime() < total_FrameTime){
 			SDL_Delay(total_FrameTime - m_Timer.DeltaTime());
-		}
+		}*/
 
 		
 		

@@ -15,6 +15,7 @@ public:
 	void Render_Field(Field& r_Field);
 	void Render_All(Field& r_Field);
 	void Init();
+	void switch_Grid_State();
 
 
 private:
@@ -22,6 +23,8 @@ private:
 	float f_resolution;
 	SDL_Renderer* f_Renderer;
 	SDL_Window* f_Window;
+
+	bool GRID_STATE;
 
 	int const SCREEN_WIDTH = 1000;
 	int const SCREEN_HEIGHT = 1000;

@@ -12,13 +12,17 @@ void Field::Initiate_Field_DEF(){
 	f_ySize = DEFAULT_SIZE;
 	
 	//TESTING
-	//l_Field[50][49] = 1;
-	//l_Field[50][50] = 1;
-	//l_Field[50][51] = 1;
+	l_Field[10][10] = 1;
+	l_Field[11][10] = 1;
+	l_Field[10][11] = 1;
+	l_Field[11][11] = 1;
+	
+	l_Field[12][12] = 1;
+	l_Field[13][12] = 1;
+	l_Field[12][13] = 1;
+	l_Field[13][13] = 1;
 
-	//l_Field[50][70] = 1;
-	//l_Field[51][71] = 1;
-
+	
 	l_Field[1][3] = 1;
 	l_Field[1][4] = 1;
 	l_Field[1][5] = 1;

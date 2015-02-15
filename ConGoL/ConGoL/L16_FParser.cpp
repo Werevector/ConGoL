@@ -6,11 +6,13 @@ int L16_Parser::Load_Field(Field &p_Field ,string file_Name){
 	ifstream field_File(file_Name);
 	if (field_File.is_open()){
 		int x, y;
+		string line;
+		while (getline(field_File, line)){
+			if (line[0] != '#'){
+				istringstream(line) >> x >> y;
 
-		while (field_File >> x >> y){
-			stringstream(x) >> x;
-			stringstream(y) >> y;
-			p_Field.Set_State_LIVE(x+15, y+15);
+				p_Field.Set_State_LIVE(x + (p_Field.get_FieldSize_X() / 2), y + (p_Field.get_FieldSize_Y() / 2));
+			}
 		}
 	}
 	else{

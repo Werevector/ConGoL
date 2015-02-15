@@ -7,6 +7,7 @@
 #include "GameTimer.h"
 #include <dos.h>
 #include "L16_FParser.h"
+#include <chrono>
 void close();
 
 
@@ -24,13 +25,13 @@ int main(int argc, char* args[]) {
 
 	//The main sim loop
 	m_Field.Initiate_Field_DEF();
-	L16_Parser::Load_Field(m_Field, "LF106//gun.life");
+	L16_Parser::Load_Field(m_Field, "LF106//quasar.life");
 
 	m_FRenderer.Init();
 
 	m_Timer.Reset();
 
-	int frame_Cap = 10;
+	int frame_Cap = 60;
 	int total_FrameTime = 1000 / frame_Cap;
 
 	while (!quit)
@@ -58,11 +59,13 @@ int main(int argc, char* args[]) {
 		m_FRenderer.Render_All(m_Field);
 		
 		//m_FRenderer.Render_FieldGrid(m_Field.get_FieldSize_X(), m_Field.get_FieldSize_Y());
-
+		auto t_start = std::chrono::high_resolution_clock::now();
 		m_Loop.runOnce(m_Field);
-		
+		auto t_end = std::chrono::high_resolution_clock::now();
 
-		std::cout << "Time: " << m_Timer.TotalTime() << "\n";
+		double time = std::chrono::duration<double, std::milli>(t_end - t_start).count();
+
+		std::cout << "NextGenTime: " << time << "\n";
 		
 		total_FrameTime = 1000 / frame_Cap;
 		if (m_Timer.DeltaTime() < total_FrameTime){

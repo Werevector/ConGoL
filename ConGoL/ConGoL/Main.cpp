@@ -25,13 +25,13 @@ int main(int argc, char* args[]) {
 
 	//The main sim loop
 	m_Field.Initiate_Field_DEF();
-	L16_Parser::Load_Field(m_Field, "LF106//quasar.life");
+	L16_Parser::Load_Field(m_Field, "LF106//pulsar.life");
 
 	m_FRenderer.Init();
 
 	m_Timer.Reset();
 
-	int frame_Cap = 60;
+	int frame_Cap = 30;
 	int total_FrameTime = 1000 / frame_Cap;
 
 	while (!quit)
@@ -58,7 +58,6 @@ int main(int argc, char* args[]) {
 		
 		m_FRenderer.Render_All(m_Field);
 		
-		//m_FRenderer.Render_FieldGrid(m_Field.get_FieldSize_X(), m_Field.get_FieldSize_Y());
 		auto t_start = std::chrono::high_resolution_clock::now();
 		m_Loop.runOnce(m_Field);
 		auto t_end = std::chrono::high_resolution_clock::now();
@@ -79,6 +78,7 @@ int main(int argc, char* args[]) {
 	}
 
 	m_Loop.StopSim();
+	m_FRenderer.~Field_Renderer();
 	close();
 
 
@@ -88,12 +88,6 @@ int main(int argc, char* args[]) {
 
 void close()
 {
-
-	//Destroy window	
-	/*SDL_DestroyRenderer(Graphics::gRenderer);
-	SDL_DestroyWindow(Graphics::gWindow);
-	Graphics::gWindow = NULL;
-	Graphics::gRenderer = NULL*/;
 
 	//Quit SDL subsystems
 	SDL_Quit();

@@ -5,6 +5,14 @@ Field_Renderer::Field_Renderer(){
 	GRID_STATE = false;
 }
 
+Field_Renderer::~Field_Renderer(){
+	SDL_DestroyRenderer(f_Renderer);
+	SDL_DestroyWindow(f_Window);
+	f_Window = NULL;
+	f_Renderer = NULL;
+
+}
+
 void Field_Renderer::Init(){
 	
 	f_Window = SDL_CreateWindow("ConGoL", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
@@ -78,7 +86,6 @@ void Field_Renderer::Render_Field(Field& r_Field){
 
 	l_Rect.w = (SCREEN_WIDTH / rows) * f_resolution;
 	l_Rect.h = (SCREEN_HEIGHT / coll) * f_resolution;
-	
 	for (int x = 0; x < rows - 1; x++){
 		for (int y = 0; y < coll - 1; y++){
 			if (r_Field.get_FieldState(x,y) == 1){

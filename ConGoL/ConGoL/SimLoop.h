@@ -3,6 +3,7 @@
 #include "GameTimer.h"
 #include "Field.h"
 #include "Field_Operator.h"
+#include "Field_Renderer.h"
 
 //class for looping through a simulation on an integer field
 class SimLoop{
@@ -18,7 +19,7 @@ public:
 	//Custom Field Loop
 	SimLoop(Field field);
 
-	void StartSim();
+	void StartSim(Field &field);
 	void StopSim();
 
 	void runOnce(Field &field);

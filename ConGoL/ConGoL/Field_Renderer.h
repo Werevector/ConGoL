@@ -9,6 +9,7 @@ class Field_Renderer{
 public:
 
 	Field_Renderer();
+	~Field_Renderer();
 
 	void Render_FieldGrid(int rows, int coll);
 	void Render_FieldRect(int xPos, int yPos);

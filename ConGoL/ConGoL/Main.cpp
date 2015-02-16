@@ -25,7 +25,7 @@ int main(int argc, char* args[]) {
 
 	//The main sim loop
 	m_Field.Initiate_Field_DEF();
-	L16_Parser::Load_Field(m_Field, "LF106//pulsar.life");
+	L16_Parser::Load_Field(m_Field, "LF106/squaredance.life");
 
 	m_FRenderer.Init();
 
@@ -55,11 +55,28 @@ int main(int argc, char* args[]) {
 		if (currentKeyStates[SDL_SCANCODE_G]){
 			m_FRenderer.switch_Grid_State();
 		}
+
+		if (currentKeyStates[SDL_SCANCODE_Q]){
+			m_Loop.StopSim();
+		}
+
+		if (currentKeyStates[SDL_SCANCODE_A]){
+			m_Loop.StartSim();
+		}
+
+		if (event.button.type == SDL_MOUSEBUTTONDOWN){
+			std::cout << "mousebutton is down \n";
+			int x, y;
+			SDL_GetMouseState(&x,&y);
+			x = x/ (m_FRenderer.get_Window_Size_X() / m_Field.get_FieldSize_X());
+			y = y/ (m_FRenderer.get_Window_Size_Y() / m_Field.get_FieldSize_Y());
+			m_Field.Set_State_LIVE(x, y);
+		}
 		
 		m_FRenderer.Render_All(m_Field);
 		
 		auto t_start = std::chrono::high_resolution_clock::now();
-		m_Loop.runOnce(m_Field);
+		m_Loop.RunSim(m_Field);
 		auto t_end = std::chrono::high_resolution_clock::now();
 
 		double time = std::chrono::duration<double, std::milli>(t_end - t_start).count();

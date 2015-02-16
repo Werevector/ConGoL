@@ -5,20 +5,23 @@ SimLoop::SimLoop(){
 }
 
 SimLoop::SimLoop(Field field){
-	s_Field = field;
 	sim_Run = true;
 }
 
 
 
-void SimLoop::StartSim(Field &field){
+void SimLoop::RunSim(Field &field){
 
 	if (sim_Run){
 	
-		Field_Operator::next_Gen(s_Field);
+		Field_Operator::next_Gen(field);
 		
 	}
 
+}
+
+void SimLoop::StartSim(){
+	sim_Run = true;
 }
 
 void SimLoop::StopSim(){

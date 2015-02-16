@@ -19,7 +19,8 @@ public:
 	//Custom Field Loop
 	SimLoop(Field field);
 
-	void StartSim(Field &field);
+	void StartSim();
+	void RunSim(Field &field);
 	void StopSim();
 
 	void runOnce(Field &field);

@@ -18,6 +18,8 @@ public:
 	void Init();
 	void switch_Grid_State();
 
+	int get_Window_Size_X();
+	int get_Window_Size_Y();
 
 private:
 

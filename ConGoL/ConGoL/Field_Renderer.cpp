@@ -109,3 +109,11 @@ void Field_Renderer::Render_FieldRect(int xPos, int yPos){
 void Field_Renderer::switch_Grid_State(){
 	GRID_STATE = !GRID_STATE;
 }
+
+int Field_Renderer::get_Window_Size_X(){
+	return SCREEN_WIDTH;
+}
+
+int Field_Renderer::get_Window_Size_Y(){
+	return SCREEN_HEIGHT;
+}

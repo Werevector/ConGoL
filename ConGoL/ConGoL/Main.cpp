@@ -25,13 +25,13 @@ int main(int argc, char* args[]) {
 
 	//The main sim loop
 	m_Field.Initiate_Field_DEF();
-	L16_Parser::Load_Field(m_Field, "LF106/squaredance.life");
+	L16_Parser::Load_Field(m_Field, "LF106/DeepCell.life");
 
 	m_FRenderer.Init();
 
 	m_Timer.Reset();
 
-	int frame_Cap = 30;
+	int frame_Cap = 60;
 	int total_FrameTime = 1000 / frame_Cap;
 
 	while (!quit)

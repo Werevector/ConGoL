@@ -33,7 +33,7 @@ public:
 
 private:
 
-	int const DEFAULT_SIZE = 100;
+	int const DEFAULT_SIZE = 700;
 	std::vector<std::vector<int>> l_Field;
 
 	int f_xSize;

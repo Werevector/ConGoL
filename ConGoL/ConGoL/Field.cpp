@@ -66,15 +66,36 @@ std::vector<std::vector<int>> Field::get_sumField(){
 	std::vector<std::vector<int>> s_Field;
 	s_Field = std::vector<std::vector<int>>(f_xSize, std::vector<int>(f_ySize));
 
+	
 
-	for (int x = 0; x < f_xSize-1; x++){
-		for (int y = 0; y < f_ySize-1; y++){
-			s_Field[x][y] = get_NeighborSum(x,y);
-		}
+	for (std::list<Cell>::const_iterator cell = C_List.begin(); cell != C_List.end(); ++cell){
+		
+			s_Field[cell->x_Pos][cell->y_Pos] = get_NeighborSum(cell->x_Pos, cell->y_Pos);
+
 	}
 
 	return s_Field;
 
+}
+
+void Field::next_Gen(){
+
+
+
+	for (int x = 0; x < l_Field.get_FieldSize_X() - 1; x++){
+		for (int y = 0; y < l_Field.get_FieldSize_Y() - 1; y++){
+
+			if (s_Field[x][y] < 2){
+				l_Field.Set_State_DEAD(x, y);
+			}
+			else if (s_Field[x][y] > 3){
+				l_Field.Set_State_DEAD(x, y);
+			}
+			else if (s_Field[x][y] == 3){
+				l_Field.Set_State_LIVE(x, y);
+			}
+		}
+	}
 }
 
 

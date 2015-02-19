@@ -1,5 +1,7 @@
 #pragma once
 #include <vector>
+#include <list>
+#include "Cell.h"
 
 class Field{
 
@@ -26,6 +28,10 @@ public:
 	int get_FieldSize_Y();
 	int get_FieldState(int x, int y);
 
+	std::list<Cell> get_pCell_List();
+
+	void next_Gen();
+
 	std::vector<std::vector<int>> get_sumField();
 
 	void set_Field(std::vector<std::vector<int>>);
@@ -33,11 +39,15 @@ public:
 
 private:
 
-	int const DEFAULT_SIZE = 700;
+	int const DEFAULT_SIZE = 100;
+	
 	std::vector<std::vector<int>> l_Field;
+
+	std::list<Cell> C_List;
 
 	int f_xSize;
 	int f_ySize;
 
+	
 
 };

@@ -86,6 +86,7 @@
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Cell.h" />
     <ClInclude Include="Field.h" />
     <ClInclude Include="Field_Renderer.h" />
     <ClInclude Include="Field_Operator.h" />

@@ -3,7 +3,17 @@
 typedef boost::unordered_map<Cell, int> cellMap;
 
 Field::Field(){
-
+	relative_a = { 
+	{ -1, -1 },
+	{ -1, 0 },
+	{ -1, 1 },
+	{ 0, -1 },
+	{ 0, 0 },
+	{ 0, 1 },
+	{ 1, -1 },
+	{ 1, 0 },
+	{ 1, 1 }
+	};
 }
 
 //Innitiate Field Default (full 0)
@@ -64,46 +74,71 @@ int Field::get_NeighborSum(int x, int y){
 	return result;
 }
 
-void Field::calc_Neig_Sums(){
-	std::vector<std::vector<int>> s_Field;
-	s_Field = std::vector<std::vector<int>>(f_xSize, std::vector<int>(f_ySize));
+void Field::calc_Neighbour_Sums(){
+
+	//std::vector<std::vector<int>> s_Field;
+	//s_Field = std::vector<std::vector<int>>(f_xSize, std::vector<int>(f_ySize));
 	
 	
 	BOOST_FOREACH(cellMap::value_type i, C_Map) {
-		std::cout << i.first << "," << i.second << "\n";
+		C_Map[i.first] = get_NeighborSum(i.first.x_Pos, i.first.y_Pos);
 	}
 
-	for (cellMap::iterator cell = C_Map.begin(); cell != C_Map.end(); ++cell){
-		int x = cell->x_Pos;
-		int y = cell->y_Pos;
+	//for (cellMap::iterator cell = C_Map.begin(); cell != C_Map.end(); ++cell){
+	//	int x = cell->x_Pos;
+	//	int y = cell->y_Pos;
 
 
 
-			//cell->neighbors = get_NeighborSum(x, y);
-			//
-			//if (l_Field[x - 1][x - 1] != 1){ s_Field[x - 1][y - 1] = get_NeighborSum(x - 1, y - 1); }
-			//if (l_Field[x - 1][y] != 1){ s_Field[x - 1][y] = get_NeighborSum(x - 1, y); }
-			//if (l_Field[x - 1][y + 1] != 1){ s_Field[x - 1][y + 1] = get_NeighborSum(x - 1, y + 1); }
-			//
-			//if (l_Field[x][y - 1] != 1){ s_Field[x][y - 1] = get_NeighborSum(x, y - 1); }
-			////if (l_Field[x][y] != 1){ s_Field[x][y] = get_NeighborSum(x, y); }
-			//if (l_Field[x][y + 1] != 1){ s_Field[x][y + 1] = get_NeighborSum(x, y + 1); }
-			//
-			//if (l_Field[x + 1][y - 1] != 1){ s_Field[x + 1][y - 1] = get_NeighborSum(x + 1, y - 1); }
-			//if (l_Field[x + 1][y] != 1){ s_Field[x + 1][y] = get_NeighborSum(x + 1, y); }
-			//if (l_Field[x + 1][y + 1] != 1){ s_Field[x + 1][y + 1] = get_NeighborSum(x + 1, y + 1); }
-	}
+	//		//cell->neighbors = get_NeighborSum(x, y);
+	//		//
+	//		//if (l_Field[x - 1][x - 1] != 1){ s_Field[x - 1][y - 1] = get_NeighborSum(x - 1, y - 1); }
+	//		//if (l_Field[x - 1][y] != 1){ s_Field[x - 1][y] = get_NeighborSum(x - 1, y); }
+	//		//if (l_Field[x - 1][y + 1] != 1){ s_Field[x - 1][y + 1] = get_NeighborSum(x - 1, y + 1); }
+	//		//
+	//		//if (l_Field[x][y - 1] != 1){ s_Field[x][y - 1] = get_NeighborSum(x, y - 1); }
+	//		////if (l_Field[x][y] != 1){ s_Field[x][y] = get_NeighborSum(x, y); }
+	//		//if (l_Field[x][y + 1] != 1){ s_Field[x][y + 1] = get_NeighborSum(x, y + 1); }
+	//		//
+	//		//if (l_Field[x + 1][y - 1] != 1){ s_Field[x + 1][y - 1] = get_NeighborSum(x + 1, y - 1); }
+	//		//if (l_Field[x + 1][y] != 1){ s_Field[x + 1][y] = get_NeighborSum(x + 1, y); }
+	//		//if (l_Field[x + 1][y + 1] != 1){ s_Field[x + 1][y + 1] = get_NeighborSum(x + 1, y + 1); }
+	//}
 
-	return s_Field;
+	//return s_Field;
 
 }
 
 void Field::next_Gen(){
 
-	std::vector<std::vector<int>> s_Field = get_sumField();
-	std::list<Cell> new_C_List;
+	cellMap new_CellMap;
 
-	for (std::list<Cell>::const_iterator cell = C_List.begin(); cell != C_List.end(); ++cell){
+	calc_Neighbour_Sums();
+
+
+	BOOST_FOREACH(cellMap::value_type cell, C_Map) {
+
+		if (cell.first.neighbors < 2){
+			Set_State_DEAD(cell.first.x_Pos, cell.first.y_Pos);
+		}
+		else if (cell.first.neighbors > 3){
+			Set_State_DEAD(cell.first.x_Pos, cell.first.y_Pos);
+		}
+		else if (cell.first.neighbors == 3){
+			Set_State_LIVE(cell.first.x_Pos, cell.first.y_Pos);
+
+			add_Cell_wPadd(new_CellMap, cell.first.x_Pos, cell.first.y_Pos);
+		}
+		else{
+			add_Cell_wPadd(new_CellMap, cell.first.x_Pos, cell.first.y_Pos);
+		}
+	}
+
+	C_Map = new_CellMap;
+
+}
+
+	/*for (std::list<Cell>::const_iterator cell = C_Map.begin(); cell != C_Map.end(); ++cell){
 
 			if (s_Field[cell->x_Pos][cell->y_Pos] < 2){
 				Set_State_DEAD(cell->x_Pos, cell->y_Pos);
@@ -118,7 +153,6 @@ void Field::next_Gen(){
 
 				n_cell.x_Pos = cell->x_Pos;
 				n_cell.y_Pos = cell->y_Pos;
-				n_cell.c_State = 1;
 
 				new_C_List.push_back(n_cell);
 			}
@@ -128,25 +162,55 @@ void Field::next_Gen(){
 
 				n_cell.x_Pos = cell->x_Pos;
 				n_cell.y_Pos = cell->y_Pos;
-				n_cell.c_State = 1;
 
 				new_C_List.push_back(n_cell);
 			}
 		}
 
-	C_List = new_C_List;
-	
-}
+	C_List = new_C_List;*/
 
-void Field::add_Cell(int x, int y){
+void Field::add_Cell_wPadd(cellMap &map, int x, int y){
 	
 	Cell n_cell;
 
 	n_cell.x_Pos = x;
 	n_cell.y_Pos = y;
-	n_cell.c_State = 1;
+	n_cell.neighbors = 0;
 
-	C_List.push_back(n_cell);
+	map.emplace(n_cell, 1);
+
+	for (int fx = 0; fx < relative_a.size() - 1; fx++){
+		
+
+		n_cell.x_Pos = x + relative_a[x][0];
+		n_cell.y_Pos = y + relative_a[x][1];
+		map.emplace(n_cell, 0);
+
+
+	}
+
+}
+
+void Field::add_Cell_wPadd(int x, int y){
+	
+	Cell n_cell;
+
+	n_cell.x_Pos = x;
+	n_cell.y_Pos = y;
+	n_cell.neighbors = 0;
+
+	//C_Map.emplace(n_cell, 1);
+	C_Map[n_cell] = 1;
+
+	for (int fx = 0; fx < relative_a.size() - 1; fx++){
+
+
+		n_cell.x_Pos = x + relative_a[x][0];
+		n_cell.y_Pos = y + relative_a[x][1];
+		C_Map.emplace(n_cell, 0);
+
+
+	}
 }
 
 //void Field::C_AddCell(Cell n_Cell, std::list<Cell>& n_list){
@@ -181,9 +245,9 @@ void Field::set_Field(std::vector<std::vector<int>> new_Field){
 	l_Field.operator=(new_Field);
 }
 
-std::vector<std::vector<int>>& Field::get_FieldRef(){
-	return l_Field;
-}
+//std::vector<std::vector<int>>& Field::get_FieldRef(){
+//	return l_Field;
+//}
 
 int Field::get_FieldSize_X(){
 	return f_xSize;

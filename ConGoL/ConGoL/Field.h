@@ -36,16 +36,17 @@ public:
 
 	void next_Gen();
 
-	void calc_Neig_Sums();
+	void calc_Neighbour_Sums();
 
 	void set_Field(std::vector<std::vector<int>>);
 
-	void add_Cell(int x, int y);
+	void add_Cell_wPadd(cellMap &map, int x, int y);
+	void add_Cell_wPadd(int x, int y);
 
 
 private:
 
-	int const DEFAULT_SIZE = 500;
+	int const DEFAULT_SIZE = 10;
 	
 	std::vector<std::vector<int>> l_Field;
 
@@ -56,6 +57,8 @@ private:
 
 	int f_xSize;
 	int f_ySize;
+
+	std::vector<std::vector<int>> relative_a;
 
 	
 

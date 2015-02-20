@@ -15,7 +15,7 @@ int L16_Parser::Load_Field(Field &p_Field ,string file_Name){
 				y += (p_Field.get_FieldSize_Y() / 2);
 
 				p_Field.Set_State_LIVE(x, y);
-				p_Field.add_Cell(x, y);
+				p_Field.add_Cell_wPadd(x, y);
 			}
 		}
 	}

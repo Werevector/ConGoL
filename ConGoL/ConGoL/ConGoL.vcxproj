@@ -39,7 +39,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>D:\Programmering\VS13 DevLibraries\SDL2ImgTtf\include;$(IncludePath)</IncludePath>
+    <IncludePath>D:\Programmering\VS13 DevLibraries\SDL2ImgTtf\include;D:\Programmering\VS13 DevLibraries\boost_1_57_0;$(IncludePath)</IncludePath>
     <LibraryPath>D:\Programmering\VS13 DevLibraries\SDL2ImgTtf\lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">

@@ -25,7 +25,7 @@ int main(int argc, char* args[]) {
 
 	//The main sim loop
 	m_Field.Initiate_Field_DEF();
-	L16_Parser::Load_Field(m_Field, "LF106/DeepCell.life");
+	L16_Parser::Load_Field(m_Field, "LF106/pulsar.life");
 
 	m_FRenderer.Init();
 

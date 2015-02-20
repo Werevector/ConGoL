@@ -14,7 +14,7 @@ void SimLoop::RunSim(Field &field){
 
 	if (sim_Run){
 	
-		Field_Operator::next_Gen(field);
+		field.next_Gen();
 		
 	}
 
@@ -29,7 +29,7 @@ void SimLoop::StopSim(){
 }
 
 void SimLoop::runOnce(Field &field){
-	Field_Operator::next_Gen(field);
+	field.next_Gen();
 }
 
 Field SimLoop::get_simField(){

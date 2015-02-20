@@ -2,6 +2,10 @@
 #include <vector>
 #include <list>
 #include "Cell.h"
+#include <boost/unordered_map.hpp>
+#include <boost/foreach.hpp>
+
+typedef boost::unordered_map<Cell, int> cellMap;
 
 class Field{
 
@@ -15,7 +19,7 @@ public:
 	void Initiate_Field_PRE(std::vector<std::vector<int>>);
 
 	//Return reference to Field
-	std::vector<std::vector<int>>& get_FieldRef();
+	//std::vector<std::vector<int>>& get_FieldRef();
 
 	//Set a single space(x,y) to DEAD or LIVE
 	void Set_State_DEAD(int x, int y);
@@ -28,22 +32,27 @@ public:
 	int get_FieldSize_Y();
 	int get_FieldState(int x, int y);
 
-	std::list<Cell> get_pCell_List();
+	cellMap get_pCell_Map();
 
 	void next_Gen();
 
-	std::vector<std::vector<int>> get_sumField();
+	void calc_Neig_Sums();
 
 	void set_Field(std::vector<std::vector<int>>);
+
+	void add_Cell(int x, int y);
 
 
 private:
 
-	int const DEFAULT_SIZE = 100;
+	int const DEFAULT_SIZE = 500;
 	
 	std::vector<std::vector<int>> l_Field;
 
-	std::list<Cell> C_List;
+	//Adds Cell with padding to changeList
+	//void C_AddCell(Cell n_Cell, std::list<Cell>& n_list);
+
+	cellMap C_Map;
 
 	int f_xSize;
 	int f_ySize;

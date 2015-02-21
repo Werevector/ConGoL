@@ -46,7 +46,7 @@ public:
 
 private:
 
-	int const DEFAULT_SIZE = 10;
+	int const DEFAULT_SIZE = 500;
 	
 	std::vector<std::vector<int>> l_Field;
 

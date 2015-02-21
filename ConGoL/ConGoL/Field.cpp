@@ -8,7 +8,6 @@ Field::Field(){
 	{ -1, 0 },
 	{ -1, 1 },
 	{ 0, -1 },
-	{ 0, 0 },
 	{ 0, 1 },
 	{ 1, -1 },
 	{ 1, 0 },
@@ -118,13 +117,13 @@ void Field::next_Gen(){
 
 	BOOST_FOREACH(cellMap::value_type cell, C_Map) {
 
-		if (cell.first.neighbors < 2){
+		if (cell.second < 2){
 			Set_State_DEAD(cell.first.x_Pos, cell.first.y_Pos);
 		}
-		else if (cell.first.neighbors > 3){
+		else if (cell.second > 3){
 			Set_State_DEAD(cell.first.x_Pos, cell.first.y_Pos);
 		}
-		else if (cell.first.neighbors == 3){
+		else if (cell.second == 3){
 			Set_State_LIVE(cell.first.x_Pos, cell.first.y_Pos);
 
 			add_Cell_wPadd(new_CellMap, cell.first.x_Pos, cell.first.y_Pos);
@@ -177,15 +176,14 @@ void Field::add_Cell_wPadd(cellMap &map, int x, int y){
 	n_cell.y_Pos = y;
 	n_cell.neighbors = 0;
 
-	map.emplace(n_cell, 1);
-
+	map.emplace(n_cell, 0);
+	
 	for (int fx = 0; fx < relative_a.size() - 1; fx++){
 		
-
-		n_cell.x_Pos = x + relative_a[x][0];
-		n_cell.y_Pos = y + relative_a[x][1];
+		n_cell.x_Pos = x + relative_a[fx][0];
+		n_cell.y_Pos = y + relative_a[fx][1];
 		map.emplace(n_cell, 0);
-
+		
 
 	}
 
@@ -199,16 +197,16 @@ void Field::add_Cell_wPadd(int x, int y){
 	n_cell.y_Pos = y;
 	n_cell.neighbors = 0;
 
-	//C_Map.emplace(n_cell, 1);
-	C_Map[n_cell] = 1;
+	C_Map.emplace(n_cell, 0);
+	
 
 	for (int fx = 0; fx < relative_a.size() - 1; fx++){
 
 
-		n_cell.x_Pos = x + relative_a[x][0];
-		n_cell.y_Pos = y + relative_a[x][1];
+		n_cell.x_Pos = x + relative_a[fx][0];
+		n_cell.y_Pos = y + relative_a[fx][1];
 		C_Map.emplace(n_cell, 0);
-
+		
 
 	}
 }

@@ -2,7 +2,7 @@
 
 Field_Renderer::Field_Renderer(){
 	f_resolution = 1;
-	GRID_STATE = true;
+	GRID_STATE = false;
 }
 
 Field_Renderer::~Field_Renderer(){

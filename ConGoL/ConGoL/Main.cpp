@@ -71,6 +71,7 @@ int main(int argc, char* args[]) {
 			x = x/ (m_FRenderer.get_Window_Size_X() / m_Field.get_FieldSize_X());
 			y = y/ (m_FRenderer.get_Window_Size_Y() / m_Field.get_FieldSize_Y());
 			m_Field.Set_State_LIVE(x, y);
+			m_Field.add_Cell_wPadd(x, y);
 		}
 		
 		m_FRenderer.Render_All(m_Field);

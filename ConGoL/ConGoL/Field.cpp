@@ -53,7 +53,7 @@ int Field::get_NeighborSum(int x, int y){
 	//WARNING, GRUESOME CODE AHEAD, DO NOT ATTEMPT READING. 
 	
 	//Left neighbor Row
-	if (x != 0){
+	if (x != 0 && x > 0){
 		if (y != 0){ result += l_Field[x - 1][y - 1]; }
 		result += l_Field[x - 1][y];
 		if (y != f_ySize){ result += l_Field[x - 1][y + 1]; }
@@ -178,11 +178,20 @@ void Field::add_Cell_wPadd(cellMap &map, int x, int y){
 
 	map.emplace(n_cell, 0);
 	
+	int new_x;
+	int new_y;
+
 	for (int fx = 0; fx < relative_a.size() - 1; fx++){
 		
-		n_cell.x_Pos = x + relative_a[fx][0];
-		n_cell.y_Pos = y + relative_a[fx][1];
-		map.emplace(n_cell, 0);
+		new_x = x + relative_a[fx][0];
+		new_y = y + relative_a[fx][1];
+
+		if (new_x > 0 && new_x < f_xSize && new_y > 0 && new_y < f_ySize){
+			n_cell.x_Pos = x + relative_a[fx][0];
+			n_cell.y_Pos = y + relative_a[fx][1];
+			map.emplace(n_cell, 0);
+		}
+		
 		
 
 	}
